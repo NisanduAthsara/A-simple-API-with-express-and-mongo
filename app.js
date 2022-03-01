@@ -7,6 +7,8 @@ const routes = require('./routes/router')
 
 const PORT = 3000
 
+app.use(express.urlencoded({extended:true}))
+
 app.use(routes)
 
 mongoose.connect(process.env.DB_CON,{useNewUrlParser:true},()=>{
