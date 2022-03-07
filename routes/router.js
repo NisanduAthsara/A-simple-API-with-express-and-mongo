@@ -47,6 +47,25 @@ router.post('/posts',(req,res)=>{
         })
 })
 
+router.put('/posts/:id',(req,res)=>{
+    if(!req.body){
+        return res.status(404).send({message:'Unable to update..!'})
+    }else{
+        const id = req.params.id
+        Post.findByIdAndUpdate(id,req.body)
+            .then(data =>{
+                if(!data){
+                    res.send({message:'Unable to find User'})
+                }else{
+                    res.send({message:'User Data Successfully Updated...!'})
+                }
+            })
+            .catch(err =>{
+                res.send({message:err})
+            })
+    }
+})
+
 router.delete('/posts/:id',(req,res)=>{
     const id = req.params.id
 
